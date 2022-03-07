@@ -17,6 +17,8 @@ function handleEmail (event) {
 function handleSubmit (event) {
     event.preventDefault()
     console.log("submitted!", props.formData)
+    props.answersList.push(props.formData)
+    console.log(props.answersList)
     props.setFormData(props.initialFormState)
 }
   return (

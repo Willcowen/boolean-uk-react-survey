@@ -10,23 +10,34 @@ function Main() {
     email: ''
   }
 
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState(initialFormState)
   const [answersList, setAnswersList] = useState([])
+
+  const displayAnswers = (answer) => {
+    return (
+      <li>
+      <h4>Duck Colour Rating: {answer.duckColourRating}</h4>
+      <h4>Time Spent with Your Rubber duck: {answer.duckTimeSpent}</h4>
+      <h4>Additional comments: {answer.duckAdditionalComments}</h4>
+      <h4>Your Name: {answer.name}</h4>
+      <h4>Your Email: {answer.email}</h4>
+      </li>
+    )
+  }
 
   console.log("loading form...", formData)
   return (
     <main className="main">
       <section className={`main__list ${open ? "open" : ""}`}>
         <h2>Answers list</h2>
-        <h3>Duck Colour Rating: {answersList.duckColourRating}</h3>
-        <h3>Time spent with your rubber duck: {answersList.duckTimeSpent}</h3>
-        <h3>Additional comments: {answersList.duckAdditionalComments}</h3>
-        <h3>Your Name: {answersList.name}</h3>
-        <h3>Your Email: {answersList.email}</h3>
+        <button onClick={() => setAnswersList([])}>CLEAR LIST</button>
+        <ul>
+        {answersList.map((answer) => displayAnswers(answer))}
+        </ul>
       </section>
       <section className="main__form">
-        <Form formData={formData} setFormData={setFormData} initialFormState={initialFormState} answersList={answersList} setAnswersList={setAnswersList}/>
+        <Form formData={formData} setFormData={setFormData} initialFormState={initialFormState} answersList={answersList} />
       </section>
     </main>
   );
